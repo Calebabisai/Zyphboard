@@ -1,12 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, RouterOutlet],
   templateUrl: './main-layout.html',
-  styleUrl: './main-layout.css',
+  styleUrls: ['./main-layout.css'],
 })
 export class MainLayout {
-  
-}
+  collapsed = signal(false);
+
+  menu = [
+    {label : 'Dashboard', route: '/dashboard', icon: '🏠'},
+    {label : 'Analíticas', route: '/analytics', icon: '📊'},
+    {label : 'Usuarios', route: '/users', icon: '👥'},
+    {label : 'Configuración', route: '/settings', icon: '⚙️'},
+  ]
+
+  toggleBar() {
+    const next = !this.collapsed();
+    this.collapsed.set(next);
+  }
+};
