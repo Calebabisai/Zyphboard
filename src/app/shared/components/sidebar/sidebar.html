@@ -1,1 +1,45 @@
-<p>sidebar works!</p>
+  <aside
+    class="bg-gray-800 text-white transition-all duration-200 h-full flex flex-col"
+    [class.w-64]="!collapsed()"
+    [class.w-16]="collapsed()"
+  >
+    <div class="p-4 flex items-center justify-between">
+
+      <div class="flex items-center gap-2">
+        @if (collapsed()) {
+            <span class="text-xl font-bold">Z</span>
+        }@else {
+            <span class="text-xl font-bold">Zyphboard</span>
+        }
+      </div>
+
+      <button (click)="onToggle()" 
+      class="p-0 w-8 h-8 flex items-center justify-center rounded hover:bg-gray-700"
+      aria-label="Toggle sidebar">
+        @if (collapsed()) {
+            <span>☰</span>
+        }@else {
+            <span>X</span>
+        }
+      </button>
+    </div>
+
+    <nav class="mt-6">
+      <ul>
+        @for (item of menu(); track item.route) {
+            <li>
+                <a
+                [routerLink]="item.route"
+                class="flex items-center gap-3 p-2 hover:bg-gray-700 rounded mx-2"
+                >
+                <span class="w-6 text-center">{{ item.icon }}</span>
+                @if (!collapsed()) {
+                    <span class="flex-1">{{ item.label }}</span>
+                }
+
+                </a>
+            </li>
+        }
+      </ul>
+    </nav>
+  </aside>
