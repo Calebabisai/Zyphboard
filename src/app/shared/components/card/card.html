@@ -1,1 +1,16 @@
-<p>card works!</p>
+<div class="bg-white rounded-lg shadow-sm p-4 flex items-center gap-4">
+    <div class="p-3 bg-indigo-50 text-indigo-600 rounded-md text-2xl">{{ icon() }}</div>
+
+
+<div class="flex-1">
+    <div class="text-sm text-gray-500"> {{ tittle() }}</div>
+    <div class="text-lg font-semibold text-gray-800">{{ value() }}</div>
+</div>
+
+@if (delta()) {
+    <div class="text-right">
+        <div class="text-sm text-gray-500">Cambio</div>
+        <div class="mt-1 text-sm text-green-600">{{ delta() }}</div>
+    </div>
+}
+</div>

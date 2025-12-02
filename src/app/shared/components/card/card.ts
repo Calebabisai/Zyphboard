@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './card.css',
 })
 export class Card {
-  
+  //Inputs para personalizar la tarjeta
+  tittle = input<string>('');
+  value = input<string | number>('');
+  icon = input<string>('');
+  delta = input<string | null>(null);
 }

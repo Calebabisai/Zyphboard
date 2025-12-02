@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './auth-layout.html',
-  styleUrl: './auth-layout.css',
+  styleUrls: ['./auth-layout.css'],
 })
 export class AuthLayout {
 

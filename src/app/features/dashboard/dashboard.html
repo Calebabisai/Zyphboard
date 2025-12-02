@@ -1,1 +1,24 @@
-<p>dashboard works!</p>
+<div class="space-y-6">
+  <div class="flex items-center justify-between">
+    <h2 class="text-2xl font-semibold">Panel principal</h2>
+    <div>
+      <button (click)="bump()" class="px-3 py-1 bg-indigo-600 text-white rounded-md">Simular</button>
+    </div>
+  </div>
+
+  <!-- Grid de cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <app-card title="Usuarios" [value]="users()" icon="👥" delta="+3%"></app-card>
+    <app-card title="Ingresos" [value]="revenue()" icon="💰" delta="+1.2%"></app-card>
+    <app-card title="Sesiones" [value]="sessions()" icon="🖥️" delta="-0.5%"></app-card>
+    <app-card title="Conversión" [value]="conversion() + '%'" icon="📈" delta="+0.3%"></app-card>
+  </div>
+
+  <!-- Espacio para widgets adicionales -->
+  <section class="mt-6">
+    <div class="bg-white rounded-lg shadow-sm p-4">
+      <h3 class="text-lg font-medium mb-2">Resumen</h3>
+      <p class="text-sm text-gray-600">Aquí puedes añadir gráficos, tablas o widgets más complejos.</p>
+    </div>
+  </section>
+</div>
