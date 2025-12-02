@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { Card } from '../../shared/components/card/card';
+import { Analytics } from '../analytics/analytics';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [Card],
+  imports: [Card, Analytics],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css'],
 })

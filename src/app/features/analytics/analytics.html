@@ -1,1 +1,104 @@
-<p>analytics works!</p>
+<!-- analytics.html -->
+<div class="p-6 space-y-6">
+  <!-- Header con botones -->
+  <div class="flex items-center justify-between">
+    <h1 class="text-2xl font-bold text-gray-800">Analytics Dashboard</h1>
+    
+    <div class="flex gap-2">
+      <button 
+        (click)="updateRevenue()"
+        class="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition"
+      >
+        Actualizar Ingresos
+      </button>
+      <button 
+        (click)="updateSessions()"
+        class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
+      >
+        Actualizar Sesiones
+      </button>
+      <button 
+        (click)="updateBoth()"
+        class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+      >
+        Actualizar Todo
+      </button>
+      <button 
+        (click)="resetData()"
+        class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition"
+      >
+        Reiniciar
+      </button>
+    </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm text-gray-600 font-medium">Ingreso Total</p>
+          <p class="text-2xl font-bold text-gray-900 mt-2">
+            ${{ totalRevenue().toLocaleString() }}
+          </p>
+        </div>
+        <div class="text-4xl">💰</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm text-gray-600 font-medium">Sesiones Totales</p>
+          <p class="text-2xl font-bold text-gray-900 mt-2">
+            {{ totalSessions().toLocaleString() }}
+          </p>
+        </div>
+        <div class="text-4xl">📊</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm text-gray-600 font-medium">Promedio Ingresos</p>
+          <p class="text-2xl font-bold text-gray-900 mt-2">
+            ${{ averageRevenue().toFixed(0) }}
+          </p>
+        </div>
+        <div class="text-4xl">📈</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm text-gray-600 font-medium">Promedio Sesiones</p>
+          <p class="text-2xl font-bold text-gray-900 mt-2">
+            {{ averageSessions().toFixed(0) }}
+          </p>
+        </div>
+        <div class="text-4xl">👥</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Chart 1 - Area -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">
+        Ingresos Mensuales
+      </h3>
+      <div #chart1></div>
+    </div>
+
+    <!-- Chart 2 - Bar -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">
+        Sesiones por Fuente
+      </h3>
+      <div #chart2></div>
+    </div>
+  </div>
+</div>
