@@ -1,1 +1,32 @@
-<p>navbar works!</p>
+<header class="w-full bg-white border-b border-gray-200 px-4 py-3 sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <!-- Icono / branding pequeño -->
+      <div class="flex items-center gap-2">
+        <span class="text-lg font-semibold text-gray-800">Zyphboard</span>
+      </div>
+    </div>
+
+    <!-- Centro: buscador -->
+    <div class="flex-1 px-4">
+      <div class="max-w-md mx-auto">
+        <input
+          type="search"
+          [value]="search()"
+          (input)="search.set($any($event.target).value)"
+          placeholder="Buscar..."
+          class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500"
+        />
+      </div>
+    </div>
+
+    <!-- Derecha: notificaciones / avatar -->
+    <div class="flex items-center gap-3">
+      <button class="p-2 rounded-md hover:bg-gray-100" title="Notificaciones">🔔</button>
+      <div class="flex items-center gap-2">
+        <img src="https://www.gravatar.com/avatar?d=mp" alt="avatar" class="h-8 w-8 rounded-full"/>
+        <span class="hidden sm:inline text-sm text-gray-700">Caleb</span>
+      </div>
+    </div>
+  </div>
+</header>
