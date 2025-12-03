@@ -1,1 +1,78 @@
-<p>settings works!</p>
+<div class="max-w-3xl mx-auto p-6 bg-white dark:bg-slate-800 rounded-lg shadow">
+  <h2 class="text-2xl font-semibold mb-4 text-slate-800 dark:text-slate-100">Configuración</h2>
+
+  <!-- Theme Selection -->
+  <div class="mb-4">
+    <label for="theme" class="block text-sm font-medium mb-2 text-slate-700 dark:text-slate-200">Tema</label>
+    <select
+      id="theme"
+      class="w-full rounded border px-3 py-2 bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100"
+      [value]="settingsService.theme()"
+      (change)="onThemeChange($event)">
+      <option value="system">🖥️ Sistema</option>
+      <option value="light">☀️ Claro</option>
+      <option value="dark">🌙 Oscuro</option>
+    </select>
+  </div>
+
+  <!-- Sidebar Toggle -->
+  <div class="mb-4 flex items-center">
+    <label class="inline-flex items-center space-x-2 text-slate-700 dark:text-slate-200 cursor-pointer">
+      <input
+        type="checkbox"
+        class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+        [checked]="settingsService.showSidebar()"
+        (change)="toggleSidebar()" />
+      <span>Mostrar sidebar</span>
+    </label>
+  </div>
+
+  <!-- Items Per Page -->
+  <div class="mb-4">
+    <label for="itemsPerPage" class="block text-sm font-medium mb-2 text-slate-700 dark:text-slate-200">
+      Items por página: <span class="font-semibold">{{ settingsService.itemsPerPage() }}</span>
+    </label>
+    <input
+      id="itemsPerPage"
+      type="range"
+      min="5"
+      max="50"
+      step="5"
+      [value]="settingsService.itemsPerPage()"
+      (input)="onItemsPerPageChange($event)"
+      class="w-full"
+    />
+  </div>
+
+  <!-- Notifications -->
+  <div class="mb-6">
+    <h3 class="text-lg font-medium mb-3 text-slate-800 dark:text-slate-100">Notificaciones</h3>
+
+    <label class="flex items-center space-x-3 mb-2 cursor-pointer">
+      <input
+        type="checkbox"
+        class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+        [checked]="settingsService.notifications().email"
+        (change)="onEmailChange($event)" />
+      <span class="text-slate-700 dark:text-slate-200">📧 Email</span>
+    </label>
+
+    <label class="flex items-center space-x-3 cursor-pointer">
+      <input
+        type="checkbox"
+        class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+        [checked]="settingsService.notifications().push"
+        (change)="onPushChange($event)" />
+      <span class="text-slate-700 dark:text-slate-200">🔔 Push</span>
+    </label>
+  </div>
+
+  <!-- Actions -->
+  <div class="flex gap-3">
+
+    <button
+      class="px-4 py-2 border rounded text-slate-700 dark:text-slate-200"
+      (click)="reset()">
+      Restaurar valores por defecto
+    </button>
+  </div>
