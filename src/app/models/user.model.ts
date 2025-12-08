@@ -8,3 +8,25 @@ export interface User {
   active: boolean
   createdAt: string
 }
+
+export interface UserFormData {
+  id: string;
+  name: string | null;
+  email: string | null;
+  role: string | null;
+  active: boolean | null;
+}
+
+export interface UserCreateDto {
+  name: string | null;
+  email: string | null;
+  role: string | null;
+  active: boolean | null;
+}
+
+export interface UserUpdateDto {
+  name?: string | null;
+  email?: string | null;
+  role?: string | null;
+  active?: boolean | null;
+}
