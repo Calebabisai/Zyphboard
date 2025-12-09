@@ -1,1 +1,96 @@
-<p>users works!</p>
+<div class="max-w-4xl mx-auto p-6">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-2xl font-semibold">Usuarios</h2>
+    <div class="flex items-center gap-3">
+      <input
+        type="search"
+        [(ngModel)]="search"
+        placeholder="Buscar por nombre o email"
+        class="px-3 py-2 border rounded w-64"
+      />
+      <button class="px-3 py-2 bg-indigo-600 text-white rounded" (click)="openCreate()">+ Nuevo</button>
+    </div>
+  </div>
+  @if (showForm()) {
+      <!-- Formulario (slide / panel simple) -->
+  <div class="mb-6 bg-white dark:bg-slate-800 p-4 rounded shadow">
+    <h3 class="text-lg font-medium mb-3">{{ editing() ? 'Editar usuario' : 'Crear usuario' }}</h3>
+
+    <form (ngSubmit)="save()" class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <input type="hidden" formControlName="id">
+
+      <div class="col-span-1 sm:col-span-2">
+        <label class="block text-sm mb-1">Nombre</label>
+        <input class="w-full px-3 py-2 border rounded" formControlName="name" />
+        @if (form.get('name')?.touched && form.get('name')?.invalid) {
+            <div class="text-red-500 text-xs mt-1">
+                Nombre requerido (min 2 caracteres).
+            </div>
+        }
+       
+      </div>
+
+      <div>
+        <label class="block text-sm mb-1">Email</label>
+        <input class="w-full px-3 py-2 border rounded" formControlName="email" />
+        @if (form.get('email')?.touched && form.get('email')?.invalid) {
+                    <div class="text-red-500 text-xs mt-1">
+          Email válido requerido.
+        </div>
+        }
+
+      </div>
+
+      <div>
+        <label class="block text-sm mb-1">Rol</label>
+        <select class="w-full px-3 py-2 border rounded" formControlName="role">
+          <option value="user">Usuario</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <label class="inline-flex items-center">
+          <input type="checkbox" formControlName="active" class="mr-2" />
+          Activo
+        </label>
+      </div>
+
+      <div class="col-span-1 sm:col-span-2 flex gap-3 justify-end mt-2">
+        <button type="button" class="px-3 py-2 border rounded" (click)="cancel()">Cancelar</button>
+        <button type="submit" class="px-3 py-2 bg-green-600 text-white rounded">{{ editing() ? 'Guardar' : 'Crear' }}</button>
+      </div>
+    </form>
+  </div>
+  }
+
+
+  <!-- Lista -->
+  <div class="bg-white dark:bg-slate-800 rounded shadow divide-y">
+
+    @for (u of filteredUsers(); track u.id) {
+            <div class="flex items-center justify-between px-4 py-3">
+      <div>
+        <div class="font-medium">{{ u.name }}</div>
+        <div class="text-sm text-slate-500">{{ u.email }} • <span class="capitalize">{{ u.role }}</span></div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button class="px-2 py-1 border rounded text-sm" (click)="openEdit(u)">Editar</button>
+        <button class="px-2 py-1 border rounded text-sm" (click)="toggleActive(u)">
+          {{ u.active ? 'Desactivar' : 'Activar' }}
+        </button>
+        <button class="px-2 py-1 bg-red-600 text-white rounded text-sm" (click)="remove(u.id)">Eliminar</button>
+      </div>
+    </div>
+    }
+
+
+    @if (filteredUsers.length === 0) {
+         <div class="p-4 text-center text-slate-500">
+      No hay usuarios. Crea uno nuevo.
+    </div>
+    }
+   
+  </div>
+</div>
